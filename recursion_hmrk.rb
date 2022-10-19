@@ -10,17 +10,17 @@ end
 #write a recursive method that takes in an array of nums and returns sum
 
 def add_numbers(nums_array)
-  return nums_array if nums_array.length <= 1
+  return nums_array[0] if nums_array.length <= 1
     
   #grab the end of the element and add it to the first index
-  add_numbers(nums_array[0..-2]) +  [nums_array.pop]
+    nums_array[0] + add_numbers(nums_array[1..-1])
 end
 
 
   p  add_numbers([1,2,3,4]) # => returns 10
-# p  add_numbers([3]) # => returns 3
-# p  add_numbers([-80,34,7]) # => returns -39
-# p  add_numbers([]) # => returns nil
+ p  add_numbers([3]) # => returns 3
+ p  add_numbers([-80,34,7]) # => returns -39
+  p  add_numbers([]) # => returns nil
 
 
 def gamma_fnc(n)
