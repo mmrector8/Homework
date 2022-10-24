@@ -21,7 +21,7 @@ class GraphNode
             else
                 first_val.neighbors.each do |neighbor|
                     if !visited.include?(neighbor)
-                    to_check << neighbor
+                         to_check << neighbor
                     end
                 end
             end
