@@ -31,30 +31,32 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
-    
-    #until the array at the current position is empty
-    until @cups[start_pos].length == 0
-        i = start_pos+1
-        i = 0 if i >13
-
-          if current_player_name == @name1 && i !=13
-            @cups[i] << @cups[start_pos].shift
-
-          elsif current_player_name == @name2 && i != 6
-            @cups[i] << @cups[start_pos].shift
-          end
-          i+=1
+    #while the length of the array at starting position is greater than one
+    i = start_pos
+   
+    while @cups[start_pos].length > 0
+      i = 0 if i == 13
+        if current_player_name == @name1 && i != 13
+          @cups[i] << @cups[start_pos].shift 
+        elsif current_player_name == @name2 && i != 6
+          @cups[i] << @cups[start_pos].shift 
+        end
+         i +=1
     end
-      ending_idx = i if @cups[start_pos].length == 0
-      return next_turn(ending_idx)
+     self.render
+     next_turn(i)
   end
 
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
-      #if player ends in own cup, return :prompt
-      #call mancala.take_turn
-      # if current player ends on a cup that has stones in i
+      if ending_cup_idx == 6 || ending_cup_idx == 13
+        return :prompt
+      elsif @cups[ending_cup_idx].length > 1
+        return :switch
+      else
+        return ending_cup_idx
+      end
   end
 
   def render
@@ -73,14 +75,12 @@ class Board
   end
 
   def winner
-    if one_side_empty?
-        if @cups[6].length == @cups[13].length
+     if @cups[6].length == @cups[13].length
           return :draw
-        elsif @cups[6].length > @cups[13].length
-          return @player1.name
-        else
-          return @player2.name
-        end
-    end
+      elsif @cups[6].length > @cups[13].length
+          return @name1
+      else
+          return @name2
+      end
   end
 end
