@@ -25,23 +25,24 @@ class Board
     if start_pos == 0 || start_pos == 14
       raise "Starting cup is empty"
     end
-    if start_pos < 1 || start_pos > 14
+    if start_pos < 1 || start_pos > 13
     raise "Invalid starting cup"
     end
   end
 
   def make_move(start_pos, current_player_name)
     #while the length of the array at starting position is greater than one
-    i = start_pos
+    i = start_pos+1
    
     while @cups[start_pos].length > 0
-      i = 0 if i == 13
-        if current_player_name == @name1 && i != 13
+      
+      i = 0 if i > 13
+        if current_player_name == @name1 && i != 13 
           @cups[i] << @cups[start_pos].shift 
         elsif current_player_name == @name2 && i != 6
-          @cups[i] << @cups[start_pos].shift 
+          @cups[i] << @cups[start_pos].shift
         end
-         i +=1
+      i +=1
     end
      self.render
      next_turn(i)
@@ -50,15 +51,16 @@ class Board
 
   def next_turn(ending_cup_idx)
     # helper method to determine whether #make_move returns :switch, :prompt, or ending_cup_idx
-      if ending_cup_idx == 6 || ending_cup_idx == 13
+      if ending_cup_idx == 7 || ending_cup_idx ==14
         return :prompt
-      elsif @cups[ending_cup_idx].length > 1
+      elsif @cups[ending_cup_idx-1].length ==  1
         return :switch
       else
-        return ending_cup_idx
+        return ending_cup_idx-1
       end
   end
 
+ 
   def render
     print "      #{@cups[7..12].reverse.map { |cup| cup.count }}      \n"
     puts "#{@cups[13].count} -------------------------- #{@cups[6].count}"
