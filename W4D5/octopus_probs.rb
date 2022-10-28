@@ -62,5 +62,18 @@ def slow_dance(tile_dir, tile_arr)
 end
 
 
-def constant_dance
+def constant_dance(tile_dir, hash)
+    hash[tile_dir]
 end
+
+tiles_hash = {
+    "up" => 0,
+    "right-up" => 1,
+    "right"=> 2,
+    "right-down"=>3,
+    "down"=> 4,
+    "left-down"=> 5,
+    "left"=> 6,
+    "left-up"=> 7
+}
+
