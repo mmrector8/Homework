@@ -1,6 +1,7 @@
 octo_arr = ['fish', 'fiiish', 'fiiiiish', 'fiiiish', 'fffish', 'ffiiiiisshh', 'fsh', 
  'fiiiissshhhhhh']
-
+#Find the longest fish in O(n^2) time.
+# Do this by comparing all fish lengths to all other fish lengths
 def sluggish_octo(arr)
     longest_fish = nil
     longest_fish_length = 0
@@ -20,8 +21,25 @@ end
 
 
 
-def dominant_octo
+
+#find the longest fish in O(n log n) time
+#quick sort or merge sort
+def dominant_octo(arr)
+    return arr if arr.length <=1
+    #set a pivot element
+    result = []
+    pivot = arr[0]
+
+    left = arr.select{|a| pivot.length > a.length }
+    right = arr.select{|a| pivot.length < a.length}
+    
+    left_sorted = dominant_octo(left)
+    right_sorted = dominant_octo(right)
+
+    left_sorted + [pivot] + right_sorted
 end
+longest_word = dominant_octo(octo_arr)[-1]
+p longest_word
 
 def clever_octo
 end
