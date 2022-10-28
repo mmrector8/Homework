@@ -39,10 +39,20 @@ def dominant_octo(arr)
     left_sorted + [pivot] + right_sorted
 end
 longest_word = dominant_octo(octo_arr)[-1]
-p longest_word
 
-def clever_octo
+
+
+def clever_octo(arr)
+    longest_word = ""
+
+    arr.each do |fish|
+        if fish.length > longest_word.length
+            longest_word = fish
+        end
+    end
+    longest_word
 end
+
 
 def dancing_octo
 end
