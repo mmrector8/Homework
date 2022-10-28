@@ -53,12 +53,14 @@ def clever_octo(arr)
     longest_word
 end
 
+tiles_array = ["up", "right-up", "right", "right-down", "down", "left-down", "left",  "left-up" ]
 
-def dancing_octo
+def slow_dance(tile_dir, tile_arr)
+    tile_arr.each_with_index do |tile, i|
+        return i if tile == tile_dir
+    end
 end
 
-def slow_dance
-end
 
 def constant_dance
 end
