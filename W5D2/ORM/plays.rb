@@ -52,14 +52,14 @@ class Play
   end
 
   def create
-    raise "#{self} already in database" if self.id
-    PlayDBConnection.instance.execute(<<-SQL, self.title, self.year, self.playwright_id)
+    raise "#{self} already in database" if @id
+    PlayDBConnection.instance.execute(<<-SQL, @title, @year, @playwright_id)
       INSERT INTO
-        playwright (name, year)
+        plays (title, year, playwright_id)
       VALUES
         (?, ?, ?)
     SQL
-    self.id = PlayDBConnection.instance.last_insert_row_id
+    @id = PlayDBConnection.instance.last_insert_row_id
   end
 
   def update
