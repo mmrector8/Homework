@@ -1,5 +1,8 @@
 class House < ApplicationRecord
-        def check_address
+    validates :address, presence: true
+    validate :check_address
+    
+    def check_address
         unless self.address.length > 5
             raise 'invalid address'
         end
