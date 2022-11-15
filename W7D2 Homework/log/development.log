@@ -92,3 +92,609 @@ FOREIGN KEY ("owner_id")
   [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "5fc630daf9839ba78eb4c9f20904a55cf1d7e15d"], ["created_at", "2022-11-15 05:17:00.068559"], ["updated_at", "2022-11-15 05:17:00.068559"]]
   [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/cats" for ::1 at 2022-11-14 21:27:16 -0800
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.8ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:14
+  Rendered cats/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1489)
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | Allocations: 4045)
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 0.8ms | Allocations: 9139)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+  app/controllers/cats_controller.rb:7:in `index'
+
+Started POST "/__better_errors/bfb9798ed7817f63/variables" for ::1 at 2022-11-14 21:27:17 -0800
+Started GET "/cats/new" for ::1 at 2022-11-14 21:28:14 -0800
+Processing by CatsController#new as HTML
+Redirected to http://localhost:3000/session/new
+Filter chain halted as :require_logged_in rendered or redirected
+Completed 302 Found in 10ms (ActiveRecord: 0.0ms | Allocations: 487)
+
+
+Started GET "/session/new" for ::1 at 2022-11-14 21:28:14 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.7ms | Allocations: 219)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.2ms | Allocations: 658)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 2446)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 3202)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/6fe2c6af0cde860d/variables" for ::1 at 2022-11-14 21:28:15 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:28:46 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.7ms | Allocations: 198)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 589)
+  Rendered layout layouts/application.html.erb (Duration: 2.6ms | Allocations: 2431)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 3265)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/620871110707db67/variables" for ::1 at 2022-11-14 21:28:46 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:28:47 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.4ms | Allocations: 198)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 589)
+  Rendered layout layouts/application.html.erb (Duration: 3.2ms | Allocations: 2433)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms | Allocations: 3274)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/0be4743d6d297156/variables" for ::1 at 2022-11-14 21:28:47 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:30:33 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 2.1ms | Allocations: 198)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 3.6ms | Allocations: 589)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 2433)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3274)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/d9f2ceb4973b44fb/variables" for ::1 at 2022-11-14 21:30:33 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:30:34 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.4ms | Allocations: 172)
+  Rendered layout layouts/application.html.erb (Duration: 1.5ms | Allocations: 2023)
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 2380)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/b93ad62d8a7a0f61/variables" for ::1 at 2022-11-14 21:30:34 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:31:33 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.6ms | Allocations: 201)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 10.0ms | Allocations: 690)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 2532)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.0ms | Allocations: 3365)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/78370ce2a545e377/variables" for ::1 at 2022-11-14 21:31:33 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:31:34 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | Allocations: 211)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 2067)
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 2424)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/c0dd78c496f819a5/variables" for ::1 at 2022-11-14 21:31:34 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:32:10 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.1ms | Allocations: 49)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 269)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | Allocations: 2077)
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 2727)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/451479135a9742e9/variables" for ::1 at 2022-11-14 21:32:10 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:32:41 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 1.1ms | Allocations: 201)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 629)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 2471)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms | Allocations: 3304)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/e7427a9cb5f2b36e/variables" for ::1 at 2022-11-14 21:32:41 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:32:42 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.3ms | Allocations: 201)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 629)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | Allocations: 2471)
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms | Allocations: 3305)
+
+
+
+ActionView::SyntaxErrorInTemplate - Encountered a syntax error while rendering template: check <!DOCTYPE html>
+<html>
+  <head>
+    <title>99 Cats</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <h1><a href="<%= cats_url %>">99 Cats</a></h1>
+      <div>
+        <% if current_user.nil? %>
+          <a href="<%= new_session_url %>">Sign in</a>
+          <a href="<%= new_user_url %>">Sign up</a>
+        <% else %>
+          <%= current_user.username %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="delete">
+            <input type="submit" value="Logout">
+          </form>
+        <% end %>
+      </div>
+    </nav>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    This is the 99Cats site, feel free to browse!
+    <%= yield: footer %>
+    </footer>
+  </body>
+</html>:
+
+Started POST "/__better_errors/f865a9e6f590cb79/variables" for ::1 at 2022-11-14 21:32:42 -0800
+Started GET "/session/new" for ::1 at 2022-11-14 21:33:57 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.7ms | Allocations: 201)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 629)
+  Rendered layout layouts/application.html.erb (Duration: 39.4ms | Allocations: 8946)
+Completed 200 OK in 42ms (Views: 40.8ms | ActiveRecord: 0.0ms | Allocations: 9825)
+
+
+Started GET "/session/new" for ::1 at 2022-11-14 21:34:01 -0800
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.5ms | Allocations: 167)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 1307)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.0ms | Allocations: 1795)
+
+
+Started POST "/session" for ::1 at 2022-11-14 21:34:04 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/models/user.rb:36:in `find_by_credentials'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.1ms | Allocations: 25)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | Allocations: 192)
+  Rendered layout layouts/application.html.erb (Duration: 2.8ms | Allocations: 1436)
+Completed 200 OK in 19ms (Views: 3.4ms | ActiveRecord: 4.2ms | Allocations: 7001)
+
+
+Started POST "/session" for ::1 at 2022-11-14 21:34:56 -0800
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"username"=>"", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/models/user.rb:36:in `find_by_credentials'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered shared/_errors.html.erb (Duration: 0.9ms | Allocations: 186)
+  Rendered sessions/new.html.erb within layouts/application (Duration: 2.1ms | Allocations: 603)
+  Rendered layout layouts/application.html.erb (Duration: 4.6ms | Allocations: 2220)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.2ms | Allocations: 3666)
+
+
+Started GET "/cats" for ::1 at 2022-11-14 21:35:02 -0800
+Processing by CatsController#index as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering cats/index.html.erb within layouts/application
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats"[0m
+  ↳ app/views/cats/index.html.erb:14
+  Rendered cats/index.html.erb within layouts/application (Duration: 2.1ms | Allocations: 1130)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 2711)
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 0.2ms | Allocations: 4565)
+
+
