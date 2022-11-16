@@ -20,7 +20,8 @@ class Play
   end
 
   def self.find_by_title(title)
-    PlayDBConnection.instance.execute(<<-SQL, title)
+
+   PlayDBConnection.instance.execute(<<-SQL, title)
       SELECT
         *
       FROM
@@ -28,7 +29,6 @@ class Play
       WHERE
         title = ?
     SQL
-     return nil unless play.length > 0
   end
 
   def self.find_by_playwright(name)
