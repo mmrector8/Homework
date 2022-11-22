@@ -45,3 +45,29 @@ const isPrime = (num) => {
 // console.log(isPrime(10))
 // console.log(isPrime(15485863))
 // console.log(isPrime(3548563))
+
+// firstNPrimes
+
+// create a prime array
+// while the length of the prime array is less than the input number
+// check if i is prime, add it to arr if it is, increment i
+// return array
+
+const sumOfNPrimes = (n) => {
+    let prime_arr = []
+    let i = 0
+    if (n === 0) {
+        return 0
+    }
+    while (prime_arr.length < n ){
+        if (isPrime(i)){
+            prime_arr.push(i)
+        }
+       i++ 
+    }
+    return prime_arr.reduce((acc, ele) => acc + ele)
+}
+
+// console.log(sumOfNPrimes(4))
+// console.log(sumOfNPrimes(0))
+// console.log(sumOfNPrimes(1))
