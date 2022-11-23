@@ -29,9 +29,36 @@ Elephant.prototype.addTrick = function(trick) {
 }
 
 Elephant.prototype.play = function(){
-    const trick = this.tricks[Math.floor(Math.random()*this.tricks.length)];
+    const trick = this.tricks[Math.floor(Math.random() * this.tricks.length)];
     return trick;
 }
 
-const lela = new Elephant('Lela', 24, ['jump', 'spin', 'take carbon out of atmosphere'])
+Elephant.paradeHelper = function(elephant) {
+    console.log(`${elephant.name} is parading by!`)
+}
 
+
+let lela = new Elephant('Lela', 24, ['jump', 'spin', 'take carbon out of atmosphere'])
+let ellie = new Elephant("Ellie", 185, ["giving human friends a ride", "playing hide and seek"]);
+let charlie = new Elephant("Charlie", 200, ["painting pictures", "spraying water for a slip and slide"]);
+let kate = new Elephant("Kate", 234, ["writing letters", "stealing peanuts"]);
+let micah = new Elephant("Micah", 143, ["trotting", "playing tic tac toe", "doing elephant ballet"]);
+
+let herd = [ellie, charlie, kate, micah];
+//Elephant.paradeHelper(herd)
+//const parade = herd.forEach((elephant)=> (Elephant.paradeHelper(elephant)))
+
+
+//Breakfast and Closures
+
+const dinerBreakfast = function() {
+    let order = "I want thai red curry"
+    console.log(order)
+
+    return function (food){
+        order =`${order}, and ${food} please`;
+        console.log(order)
+    }
+}
+let bfastOrder = dinerBreakfast();
+//console.log(bfastOrder(['coconut', 'ice cream']))
