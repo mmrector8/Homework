@@ -53,7 +53,6 @@ let herd = [ellie, charlie, kate, micah];
 
 const dinerBreakfast = function() {
     let order = "I want thai red curry"
-    console.log(order)
 
     return function (food){
         order =`${order}, and ${food} please`;
@@ -61,4 +60,4 @@ const dinerBreakfast = function() {
     }
 }
 let bfastOrder = dinerBreakfast();
-//console.log(bfastOrder(['coconut', 'ice cream']))
+bfastOrder()
