@@ -36,6 +36,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- your code here!
 
-
-
-});
+  const showPhotoForm = (e) => {
+    const photoFormCont = document.querySelector(".photo-form-container");
+    if (photoFormCont.className === "photo-form-container"){
+      photoFormCont.className = "photo-form-container hidden"
+    }else{
+      photoFormCont.className = "photo-form-container"
+    }
+  }
+  const photoFormShowButton = document.querySelector(".photo-show-button");
+  photoFormShowButton.addEventListener("click", showPhotoForm);
+});  
+  
+   
+  //const handlePhotoSubmit = (e) => { 
+ // e.preventDefault(); const photoUrlInput = document.querySelector(".photo-url-input"); const photoUrl = photoUrlInput.value; photoUrlInput.value = ""; const newImg = document.createElement("img"); newImg.src = photoUrl; const newPhotoLi = document.createElement("li"); newPhotoLi.appendChild(newImg); const dogPhotosList = document.querySelector(".dog-photos"); dogPhotosList.appendChild(newPhotoLi); }; const photoSubmitButton = document.querySelector(".photo-url-submit"); photoSubmitButton.addEventListener("click", handlePhotoSubmit);
