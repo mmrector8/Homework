@@ -37,17 +37,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // --- your code here!
 
   const showPhotoForm = (e) => {
+    //grab the container that holds the photo form
     const photoFormCont = document.querySelector(".photo-form-container");
+    // if the class name does not have keyword hidden, add hidden
     if (photoFormCont.className === "photo-form-container"){
       photoFormCont.className = "photo-form-container hidden"
+    // otherwise set the classname to not hidden
     }else{
       photoFormCont.className = "photo-form-container"
     }
   }
+  // grab the photoFormShow button
   const photoFormShowButton = document.querySelector(".photo-show-button");
+  // when you click that button run the showPhotoForm function
   photoFormShowButton.addEventListener("click", showPhotoForm);
+
+  const submitPhotoForm = (e) => {
+    e.preventDefault();
+    const newPhotoUrlInput = document.querySelector(".photo-url-input")
+    const newPhoto = newPhotoUrlInput.value;
+    newPhotoUrlInput.value = ""
+    const newImg = document.createElement("img")
+    newImg.src = newPhoto;
+    const newListItem = document.createElement("li")
+    newListItem.appendChild(newImg);
+    const dogUrlList = document.querySelector(".dog-photos")
+    dogUrlList.appendChild(newListItem)
+  }
+
+  const submitImgButton = document.querySelector(".photo-url-submit")
+  submitImgButton.addEventListener("click", submitPhotoForm)
 });  
   
    
-  //const handlePhotoSubmit = (e) => { 
- // e.preventDefault(); const photoUrlInput = document.querySelector(".photo-url-input"); const photoUrl = photoUrlInput.value; photoUrlInput.value = ""; const newImg = document.createElement("img"); newImg.src = photoUrl; const newPhotoLi = document.createElement("li"); newPhotoLi.appendChild(newImg); const dogPhotosList = document.querySelector(".dog-photos"); dogPhotosList.appendChild(newPhotoLi); }; const photoSubmitButton = document.querySelector(".photo-url-submit"); photoSubmitButton.addEventListener("click", handlePhotoSubmit);
+ 
